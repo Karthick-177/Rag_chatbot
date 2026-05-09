@@ -1,0 +1,37 @@
+Claude is an AI assistant made by Anthropic. Claude is designed to be helpful, harmless, and honest.
+
+Anthropic was founded in 2021 by Dario Amodei, Daniela Amodei, and other former OpenAI researchers. The company is focused on AI safety research and developing reliable, interpretable AI systems.
+
+Claude can help with a wide range of tasks including writing, analysis, coding, math, creative projects, and answering questions. Claude is available through Claude.ai and via Anthropic's API.
+
+Claude models include Claude Haiku, Claude Sonnet, and Claude Opus. Haiku is the fastest and most compact model. Sonnet balances speed and intelligence. Opus is the most powerful and intelligent model.
+
+Claude is trained using a technique called Constitutional AI (CAI). This method trains Claude to be helpful while avoiding harmful outputs by using a set of principles called a constitution.
+
+Claude supports a large context window, allowing it to process long documents, codebases, and conversations in a single interaction.
+
+Claude can read and analyze PDFs, images, and other documents. It can write and debug code in many programming languages including Python, JavaScript, Java, C++, and more.
+
+Claude is different from ChatGPT. ChatGPT is made by OpenAI while Claude is made by Anthropic. Both are large language models but they have different training methods and safety approaches.
+
+Anthropic's mission is the responsible development and maintenance of advanced AI for the long-term benefit of humanity. Anthropic conducts research on making AI systems safer and more interpretable.
+
+Claude uses a technique called RLHF (Reinforcement Learning from Human Feedback) combined with Constitutional AI to align its responses with human values.
+
+Claude API allows developers to integrate Claude into their own applications. The API supports features like streaming, function calling, vision, and multi-turn conversations.
+
+Claude.ai is the web interface where users can chat with Claude directly. It offers free and paid plans. The Pro plan offers more usage and access to more powerful models.
+
+Claude can perform tasks like summarization, translation, question answering, sentiment analysis, code generation, data analysis, and creative writing.
+
+Claude is designed to refuse harmful requests, avoid generating misleading information, and be transparent about its limitations and uncertainty.
+
+RAG stands for Retrieval Augmented Generation. It is a technique where an AI model retrieves relevant information from a knowledge base before generating a response. This helps the model answer questions accurately using specific documents.
+
+Vector embeddings are numerical representations of text that capture semantic meaning. Similar texts have similar vector representations. They are used in RAG systems to find relevant documents.
+
+FAISS stands for Facebook AI Similarity Search. It is a library for efficient similarity search and clustering of dense vectors. It is commonly used to build vector databases for RAG applications.
+
+Sentence Transformers is a Python library that provides pre-trained models for generating sentence embeddings. It is widely used in NLP tasks like semantic search and RAG.
+
+FastAPI is a modern Python web framework for building APIs. It is fast, easy to use, and supports automatic documentation generation via Swagger UI.
