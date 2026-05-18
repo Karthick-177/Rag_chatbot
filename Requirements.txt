@@ -1,0 +1,11 @@
+# Create the file
+echo "fastapi
+uvicorn
+sentence-transformers
+faiss-cpu
+groq" > requirements.txt
+
+# Push it
+git add requirements.txt
+git commit -m "add requirements.txt"
+git push origin main
