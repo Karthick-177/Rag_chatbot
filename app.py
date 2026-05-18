@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -7,7 +8,7 @@ import numpy as np
 from groq import Groq
 
 # ── Config ────────────────────────────────────────────────────
-GROQ_API_KEY = "your-groq-api-key-here"
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 client = Groq(api_key=GROQ_API_KEY)
 
 # ── Load Knowledge Base ───────────────────────────────────────
