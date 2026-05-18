@@ -1,4 +1,5 @@
 import os
+import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -6,6 +7,10 @@ from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
 from groq import Groq
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+logger.info("App starting...")
 
 # ── Config ────────────────────────────────────────────────────
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
@@ -18,11 +23,15 @@ with open("knowledge_base.txt", "r", encoding="utf-8") as f:
 chunks = [chunk.strip() for chunk in text.split("\n\n") if chunk.strip()]
 
 # ── Build FAISS Index ─────────────────────────────────────────
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
-embeddings = embedder.encode(chunks, convert_to_numpy=True)
-
-index = faiss.IndexFlatL2(embeddings.shape[1])
-index.add(embeddings)
+try:
+    embedder = SentenceTransformer("all-MiniLM-L6-v2")
+    embeddings = embedder.encode(chunks, convert_to_numpy=True)
+    index = faiss.IndexFlatL2(embeddings.shape[1])
+    index.add(embeddings)
+    logger.info("Model loaded successfully")
+except Exception as e:
+    logger.error(f"Startup error: {e}")
+    raise
 
 # ── App Setup ─────────────────────────────────────────────────
 app = FastAPI(title="RAG Chatbot API")
@@ -61,3 +70,7 @@ Answer:"""
         messages=[{"role": "user", "content": prompt}]
     )
     return {"answer": response.choices[0].message.content}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=7860)
