@@ -2,6 +2,7 @@ import os
 import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 import faiss
@@ -12,17 +13,14 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 logger.info("App starting...")
 
-# ── Config ────────────────────────────────────────────────────
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 client = Groq(api_key=GROQ_API_KEY)
 
-# ── Load Knowledge Base ───────────────────────────────────────
 with open("knowledge_base.txt", "r", encoding="utf-8") as f:
     text = f.read()
 
 chunks = [chunk.strip() for chunk in text.split("\n\n") if chunk.strip()]
 
-# ── Build FAISS Index ─────────────────────────────────────────
 try:
     embedder = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = embedder.encode(chunks, convert_to_numpy=True)
@@ -33,7 +31,6 @@ except Exception as e:
     logger.error(f"Startup error: {e}")
     raise
 
-# ── App Setup ─────────────────────────────────────────────────
 app = FastAPI(title="RAG Chatbot API")
 
 app.add_middleware(
@@ -48,7 +45,7 @@ class ChatInput(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "RAG Chatbot API is running!"}
+    return FileResponse("index.html")
 
 @app.post("/chat")
 def chat(input: ChatInput):
